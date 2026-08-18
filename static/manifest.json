@@ -1,0 +1,10 @@
+{
+    "name": "Dani Chat",
+    "short_name": "Dani Chat",
+    "description": "Low data real-time chat application",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0b141a",
+    "theme_color": "#075e54",
+    "orientation": "portrait"
+}

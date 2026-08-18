@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="theme-color"
+    content="#075e54"
+>
+
+<link
+    rel="manifest"
+    href="/static/manifest.json"
+>
+
+<link
+    rel="stylesheet"
+    href="/static/css/style.css"
+>
+
+<title>Dani Chat</title>
+
+</head>
+
+<body>
+
+
+<!-- ================= AUTH ================= -->
+
+<div id="auth">
+
+    <div class="auth-card">
+
+        <div class="logo">
+            💬
+        </div>
+
+        <h1>Dani Chat</h1>
+
+        <p>
+            Fast • Private • Low Data
+        </p>
+
+        <input
+            id="username"
+            placeholder="Username"
+            autocomplete="username"
+        >
+
+        <input
+            id="password"
+            type="password"
+            placeholder="Password"
+            autocomplete="current-password"
+        >
+
+        <button onclick="login()">
+            Login
+        </button>
+
+        <button
+            class="secondary"
+            onclick="register()"
+        >
+            Create Account
+        </button>
+
+        <div id="auth-message"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= APP ================= -->
+
+<div
+    id="chat-app"
+    class="hidden"
+>
+
+<header>
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            💬
+        </div>
+
+        <div>
+
+            <strong>
+                Dani Chat
+            </strong>
+
+            <small id="current-user">
+            </small>
+
+        </div>
+
+    </div>
+
+    <button
+        class="logout"
+        onclick="logout()"
+    >
+        Logout
+    </button>
+
+</header>
+
+
+<div class="chat-layout">
+
+
+<!-- ================= USERS ================= -->
+
+<aside>
+
+    <h3>
+        Contacts
+    </h3>
+
+    <div id="users"></div>
+
+</aside>
+
+
+<!-- ================= CHAT ================= -->
+
+<section class="chat">
+
+
+<div class="chat-title">
+
+    <div>
+
+        <strong id="selected-name">
+            Select a contact
+        </strong>
+
+        <small id="typing">
+        </small>
+
+    </div>
+
+
+    <div class="call-buttons">
+
+        <button
+            onclick="startVoiceCall()"
+        >
+            📞
+        </button>
+
+        <button
+            onclick="startVideoCall()"
+        >
+            🎥
+        </button>
+
+    </div>
+
+</div>
+
+
+<div
+    id="messages"
+    class="messages"
+>
+
+    <div class="empty">
+
+        <div>
+            💬
+        </div>
+
+        <p>
+            Select someone to start chatting
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="message-box">
+
+    <input
+        id="message"
+        placeholder="Write a message..."
+        autocomplete="off"
+        oninput="sendTyping()"
+        onkeydown="handleEnter(event)"
+    >
+
+    <button
+        onclick="sendMessage()"
+    >
+        ➤
+    </button>
+
+</div>
+
+
+</section>
+
+</div>
+
+</div>
+
+
+<!-- ================= CALL SCREEN ================= -->
+
+<div
+    id="call-screen"
+    class="hidden"
+>
+
+    <video
+        id="remote-video"
+        autoplay
+        playsinline
+    ></video>
+
+
+    <video
+        id="local-video"
+        autoplay
+        muted
+        playsinline
+    ></video>
+
+
+    <div class="call-info">
+
+        <h2 id="call-name">
+            Calling...
+        </h2>
+
+        <p id="call-status">
+            Connecting...
+        </p>
+
+        <button
+            class="end-call"
+            onclick="endCall()"
+        >
+            ❌
+        </button>
+
+    </div>
+
+</div>
+
+
+<script
+    src="https://cdn.socket.io/4.7.5/socket.io.min.js"
+></script>
+
+<script
+    src="/static/js/app.js"
+></script>
+
+
+<script>
+
+if ("serviceWorker" in navigator) {
+
+    navigator.serviceWorker.register(
+        "/static/sw.js"
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>
